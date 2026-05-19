@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>My Portfolio | Jamirah UWASE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{
+  --ink:#0a0a0a;
+  --cream:#faf8f3;
+  --gold:#c9a84c;
+  --gold-light:#e8d5a3;
+  --rust:#c44b2b;
+  --warm:#f5efe6;
+  --muted:#6b6560;
+  --border:#e0d8cc;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
+
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--cream);}
+::-webkit-scrollbar-thumb{background:var(--gold);}
+
+.hamburger-btn{display:none;position:fixed;top:1.2rem;right:1.2rem;z-index:1100;background:var(--ink);color:#fff;border:none;width:44px;height:44px;border-radius:50%;font-size:1.1rem;cursor:pointer;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.3);}
+.mobile-nav{display:none;position:fixed;inset:0;background:var(--ink);z-index:1050;flex-direction:column;align-items:center;justify-content:center;gap:2rem;}
+.mobile-nav.open{display:flex;}
+.mobile-nav a{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:#fff;text-decoration:none;letter-spacing:3px;transition:color .3s;}
+.mobile-nav a:hover{color:var(--gold);}
+.mobile-nav .close-btn{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:#fff;font-size:1.8rem;cursor:pointer;}
+.mobile-nav .mobile-cv-btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--gold);color:var(--ink);padding:.8rem 2rem;border-radius:6px;text-decoration:none;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;letter-spacing:1px;margin-top:.5rem;}
+
+.sidebar{position:fixed;left:0;top:0;height:100vh;width:220px;background:var(--ink);z-index:100;display:flex;flex-direction:column;align-items:center;padding:2.5rem 1rem;gap:0;}
+.sidebar .logo-area{text-align:center;margin-bottom:2rem;}
+.sidebar .logo-area img{width:80px;height:80px;object-fit:contain;border-radius:50%;border:2px solid var(--gold);}
+.sidebar .logo-area .brand{font-family:'Bebas Neue',sans-serif;color:var(--gold);font-size:1.1rem;letter-spacing:2px;margin-top:.5rem;display:block;}
+.sidebar nav{display:flex;flex-direction:column;gap:.2rem;width:100%;}
+.sidebar nav a{color:rgba(255,255,255,.6);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;padding:.7rem 1rem;border-radius:6px;transition:all .3s;display:flex;align-items:center;gap:.6rem;}
+.sidebar nav a:hover,.sidebar nav a.active{color:#fff;background:rgba(201,168,76,.15);color:var(--gold);}
+.sidebar .sidebar-cv-btn{width:100%;margin-top:.8rem;}
+.sidebar .sidebar-cv-btn a{display:flex;align-items:center;justify-content:center;gap:.5rem;background:rgba(201,168,76,.15);color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:.7rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:.8rem;letter-spacing:1px;transition:all .3s;}
+.sidebar .sidebar-cv-btn a:hover{background:var(--gold);color:var(--ink);}
+.sidebar .whatsapp-cta{margin-top:.6rem;width:100%;}
+.sidebar .whatsapp-cta a{display:flex;align-items:center;justify-content:center;gap:.5rem;background:var(--gold);color:var(--ink);padding:.7rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:.8rem;letter-spacing:1px;transition:all .3s;}
+.sidebar .whatsapp-cta a:hover{background:#e8c563;}
+
+.main-wrap{margin-left:220px;}
+
+.ticker{background:var(--gold);overflow:hidden;white-space:nowrap;padding:.55rem 0;position:sticky;top:0;z-index:90;}
+.ticker-inner{display:inline-block;animation:ticker 28s linear infinite;}
+.ticker-inner span{font-family:'Bebas Neue',sans-serif;letter-spacing:3px;font-size:1rem;color:var(--ink);padding:0 3rem;}
+.ticker-inner a{color:var(--ink);text-decoration:underline;font-family:'Bebas Neue',sans-serif;letter-spacing:3px;}
+@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+#home{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;background:var(--cream);}
+.hero-left{padding:8rem 4rem;display:flex;flex-direction:column;justify-content:center;}
+.hero-eyebrow{font-size:.75rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:1.5rem;display:flex;align-items:center;gap:.8rem;}
+.hero-eyebrow::before{content:'';width:40px;height:2px;background:var(--gold);}
+.hero-left h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,5vw,5.5rem);line-height:1.05;font-weight:900;margin-bottom:1.5rem;}
+.hero-left h1 em{font-style:italic;color:var(--rust);}
+.hero-left p{font-size:1.05rem;color:var(--muted);line-height:1.8;max-width:480px;margin-bottom:2.5rem;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-primary{background:var(--ink);color:#fff;padding:.9rem 2.2rem;border-radius:4px;text-decoration:none;font-weight:600;font-size:.9rem;letter-spacing:1px;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem;}
+.btn-primary:hover{background:var(--gold);color:var(--ink);}
+.btn-outline{border:2px solid var(--ink);color:var(--ink);padding:.9rem 2.2rem;border-radius:4px;text-decoration:none;font-weight:600;font-size:.9rem;letter-spacing:1px;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem;}
+.btn-outline:hover{background:var(--ink);color:#fff;}
+.btn-cv{background:linear-gradient(135deg,var(--gold),#e8b84b);color:var(--ink);padding:.9rem 2.2rem;border-radius:4px;text-decoration:none;font-weight:700;font-size:.9rem;letter-spacing:1px;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem;box-shadow:0 4px 15px rgba(201,168,76,.3);}
+.btn-cv:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(201,168,76,.4);}
+.hero-right{background:var(--ink);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.hero-right::before{content:'DESIGN';font-family:'Bebas Neue',sans-serif;font-size:18rem;color:rgba(201,168,76,.07);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;}
+.hero-visual{position:relative;z-index:2;text-align:center;padding:4rem 2rem;}
+.hero-visual .big-letter{font-family:'Bebas Neue',sans-serif;font-size:8rem;color:var(--gold);line-height:1;display:block;animation:float 4s ease-in-out infinite;}
+.hero-visual p{color:rgba(255,255,255,.7);font-size:1rem;margin-top:1rem;line-height:1.8;}
+.hero-stats{display:flex;gap:3rem;margin-top:3rem;}
+.stat{text-align:center;}
+.stat strong{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--gold);display:block;}
+.stat span{font-size:.75rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);}}
+
+.institution-section{padding:6rem 4rem;background:var(--warm);border-top:1px solid var(--border);}
+.inst-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.inst-card{background:#fff;border-radius:16px;padding:3rem;border:1px solid var(--border);position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;}
+.inst-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.1);}
+.inst-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--rust));}
+.inst-card .badge{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;font-weight:600;}
+.inst-logo{width:100px;height:100px;object-fit:contain;margin-bottom:1.5rem;border-radius:12px;}
+.inst-card h3{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:.8rem;}
+.inst-card p{color:var(--muted);line-height:1.8;font-size:.95rem;margin-bottom:1.5rem;}
+.inst-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--gold);font-weight:600;text-decoration:none;font-size:.9rem;transition:gap .3s;}
+.inst-link:hover{gap:.8rem;}
+
+.cta-attract{padding:5rem 4rem;background:var(--ink);text-align:center;position:relative;overflow:hidden;}
+.cta-attract::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 50%,rgba(201,168,76,.12),transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(196,75,43,.08),transparent 60%);}
+.cta-attract h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.5rem);color:#fff;margin-bottom:1.5rem;position:relative;}
+.cta-attract h2 em{color:var(--gold);font-style:italic;}
+.cta-attract p{color:rgba(255,255,255,.7);max-width:600px;margin:0 auto 2.5rem;line-height:1.8;font-size:1.05rem;position:relative;}
+.cta-attract .register-btn{background:var(--gold);color:var(--ink);padding:1.1rem 3rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:1rem;letter-spacing:1px;transition:all .3s;display:inline-block;position:relative;}
+.cta-attract .register-btn:hover{transform:scale(1.05);box-shadow:0 10px 30px rgba(201,168,76,.4);}
+
+#about{padding:7rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.about-img-wrap{position:relative;}
+.about-img-wrap .frame{background:var(--gold);border-radius:16px;height:480px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:6rem;color:var(--ink);letter-spacing:5px;overflow:hidden;position:relative;}
+.about-img-wrap .frame::after{content:'';position:absolute;bottom:0;right:0;width:60%;height:60%;background:var(--rust);opacity:.2;border-radius:50% 0 0 0;}
+.about-tag{position:absolute;bottom:-20px;right:-20px;background:var(--ink);color:#fff;padding:1rem 1.5rem;border-radius:12px;font-size:.85rem;font-weight:600;}
+.about-content .eyebrow{font-size:.75rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:1rem;}
+.about-content h2{font-family:'Playfair Display',serif;font-size:2.8rem;line-height:1.2;margin-bottom:1.5rem;}
+.about-content p{color:var(--muted);line-height:1.9;margin-bottom:1.5rem;}
+.skills-list{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem;}
+.skill-chip{background:var(--warm);border:1px solid var(--border);padding:.4rem 1rem;border-radius:20px;font-size:.82rem;font-weight:500;color:var(--ink);}
+.about-cv-row{margin-top:2rem;}
+
+#skills{padding:7rem 4rem;background:var(--warm);}
+#skills .section-head{text-align:center;margin-bottom:4rem;}
+#skills .section-head .eyebrow{font-size:.75rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:600;display:block;margin-bottom:.8rem;}
+#skills .section-head h2{font-family:'Playfair Display',serif;font-size:3rem;}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+.skill-card{background:#fff;border-radius:12px;padding:2.5rem;border:1px solid var(--border);transition:all .3s;position:relative;overflow:hidden;}
+.skill-card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,.1);border-color:var(--gold);}
+.skill-card .icon{font-size:2.5rem;margin-bottom:1.5rem;display:block;}
+.skill-card h4{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:.8rem;}
+.skill-card p{color:var(--muted);font-size:.9rem;line-height:1.7;}
+.skill-bar{height:4px;background:var(--border);border-radius:4px;margin-top:1.5rem;overflow:hidden;}
+.skill-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),var(--rust));animation:barFill 1.5s ease forwards;transform-origin:left;}
+@keyframes barFill{from{width:0;}to{width:var(--w);}}
+
+#projects{padding:7rem 4rem;}
+#projects .section-head{text-align:center;margin-bottom:4rem;}
+#projects .section-head .eyebrow{font-size:.75rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:600;display:block;margin-bottom:.8rem;}
+#projects .section-head h2{font-family:'Playfair Display',serif;font-size:3rem;}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.project-card{border-radius:12px;overflow:hidden;background:var(--ink);position:relative;cursor:pointer;transition:transform .3s,box-shadow .3s;}
+.project-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.3);}
+.project-card .img-placeholder{height:220px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:4rem;letter-spacing:3px;transition:all .4s;position:relative;}
+.project-card:nth-child(1) .img-placeholder{background:linear-gradient(135deg,#1a1a2e,#16213e);color:var(--gold);}
+.project-card:nth-child(2) .img-placeholder{background:linear-gradient(135deg,#2d1b0e,#5c3317);color:#e8d5a3;}
+.project-card:nth-child(3) .img-placeholder{background:linear-gradient(135deg,#0d2137,#1a4568);color:#7ecfff;}
+.project-card:nth-child(4) .img-placeholder{background:linear-gradient(135deg,#1a0d2e,#3d1f5c);color:#d4a5ff;}
+.project-card:nth-child(5) .img-placeholder{background:linear-gradient(135deg,#0d1a0a,#1e3d17);color:#8fff8f;}
+.project-card:nth-child(6) .img-placeholder{background:linear-gradient(135deg,#2a0d0d,#5c1717);color:#ffaaaa;}
+.project-card:hover .img-placeholder{transform:scale(1.05);}
+.project-card .img-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;}
+.project-card:hover .img-overlay{opacity:1;}
+.img-overlay .view-btn{background:var(--gold);color:var(--ink);border:none;padding:.7rem 1.6rem;border-radius:6px;font-weight:700;font-size:.85rem;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;gap:.4rem;transition:transform .2s;}
+.img-overlay .view-btn:hover{transform:scale(1.05);}
+.project-info{padding:1.5rem;}
+.project-info .tag{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.5rem;display:block;}
+.project-info h4{font-family:'Playfair Display',serif;color:#fff;font-size:1.1rem;margin-bottom:.4rem;}
+.project-info p{color:rgba(255,255,255,.5);font-size:.82rem;line-height:1.6;margin-bottom:1rem;}
+.project-info-footer{display:flex;align-items:center;justify-content:space-between;}
+.open-link-btn{display:inline-flex;align-items:center;gap:.4rem;color:var(--gold);font-size:.78rem;font-weight:600;text-decoration:none;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);padding:.4rem .9rem;border-radius:20px;transition:all .3s;cursor:pointer;}
+.open-link-btn:hover{background:var(--gold);color:var(--ink);}
+
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:2000;align-items:center;justify-content:center;padding:2rem;backdrop-filter:blur(6px);}
+.modal-overlay.open{display:flex;}
+.modal-box{background:var(--cream);border-radius:20px;max-width:680px;width:100%;position:relative;overflow:hidden;animation:modalIn .35s cubic-bezier(.34,1.56,.64,1);}
+@keyframes modalIn{from{transform:scale(.85);opacity:0;}to{transform:scale(1);opacity:1;}}
+.modal-hero{height:240px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:6rem;letter-spacing:4px;position:relative;}
+.modal-body{padding:2.5rem;}
+.modal-tag{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:.6rem;display:block;}
+.modal-body h2{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:1rem;}
+.modal-body p{color:var(--muted);line-height:1.85;margin-bottom:1.5rem;}
+.modal-meta{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;}
+.modal-chip{background:var(--warm);border:1px solid var(--border);padding:.3rem .9rem;border-radius:20px;font-size:.78rem;font-weight:500;}
+.modal-footer{display:flex;gap:1rem;flex-wrap:wrap;}
+.modal-close{position:absolute;top:1rem;right:1rem;background:rgba(0,0,0,.4);color:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s;z-index:10;}
+.modal-close:hover{background:var(--rust);}
+
+#contact{padding:7rem 4rem;background:var(--warm);}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.contact-info .eyebrow{font-size:.75rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:600;display:block;margin-bottom:.8rem;}
+.contact-info h2{font-family:'Playfair Display',serif;font-size:2.8rem;margin-bottom:1.5rem;line-height:1.2;}
+.contact-info p{color:var(--muted);line-height:1.8;margin-bottom:2rem;}
+.contact-chips{display:flex;flex-direction:column;gap:.8rem;}
+.contact-chip{display:flex;align-items:center;gap:1rem;padding:1rem 1.5rem;background:#fff;border-radius:10px;border:1px solid var(--border);text-decoration:none;color:var(--ink);font-weight:500;transition:all .3s;}
+.contact-chip:hover{border-color:var(--gold);transform:translateX(6px);}
+.contact-chip i{color:var(--gold);width:20px;}
+.contact-form input,.contact-form textarea{width:100%;padding:.9rem 1.2rem;border:1px solid var(--border);border-radius:8px;background:#fff;font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--ink);margin-bottom:1.2rem;outline:none;transition:border .3s;}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--gold);}
+.contact-form textarea{height:140px;resize:vertical;}
+.contact-form button{background:var(--ink);color:#fff;padding:1rem 2.5rem;border:none;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;transition:all .3s;width:100%;}
+.contact-form button:hover{background:var(--gold);color:var(--ink);}
+
+footer{background:var(--ink);color:#fff;padding:4rem 4rem 2rem;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem;margin-bottom:3rem;}
+.footer-brand .name{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold);letter-spacing:3px;margin-bottom:.5rem;}
+.footer-brand p{color:rgba(255,255,255,.5);font-size:.9rem;line-height:1.7;}
+.footer-brand .learner{margin-top:1.5rem;padding:1rem;background:rgba(201,168,76,.1);border-radius:8px;border-left:3px solid var(--gold);}
+.footer-brand .learner span{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.3rem;}
+.footer-brand .learner strong{font-size:1.1rem;}
+.footer-links h5{font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-size:1rem;color:var(--gold);margin-bottom:1.2rem;}
+.footer-links a{display:block;color:rgba(255,255,255,.5);text-decoration:none;font-size:.88rem;margin-bottom:.5rem;transition:color .3s;}
+.footer-links a:hover{color:var(--gold);}
+.partners-row{margin-bottom:3rem;padding:2rem;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(255,255,255,.08);}
+.partners-row h5{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1.5rem;}
+.partners-list{display:flex;gap:2rem;flex-wrap:wrap;align-items:center;}
+.partner-badge{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);padding:.6rem 1.5rem;border-radius:6px;font-size:.82rem;color:var(--gold-light);font-weight:600;letter-spacing:1px;}
+.footer-map{margin-bottom:3rem;}
+.footer-map h5{font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:1rem;}
+.footer-map iframe{width:100%;height:260px;border-radius:12px;border:1px solid rgba(255,255,255,.1);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-bottom p{color:rgba(255,255,255,.35);font-size:.82rem;}
+.register-now-btn{background:var(--gold);color:var(--ink);padding:.7rem 2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.85rem;letter-spacing:1px;transition:all .3s;}
+.register-now-btn:hover{background:#fff;color:var(--ink);}
+.social-icons{display:flex;gap:1rem;}
+.social-icons a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);text-decoration:none;transition:all .3s;font-size:.85rem;}
+.social-icons a:hover{border-color:var(--gold);color:var(--gold);}
+
+.fade-up{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:960px){
+  .sidebar{display:none;}
+  .main-wrap{margin-left:0;}
+  .hamburger-btn{display:flex;}
+  #home{grid-template-columns:1fr;min-height:auto;}
+  .hero-right{min-height:300px;}
+  .hero-left{padding:5rem 1.5rem 3rem;}
+  .hero-left h1{font-size:clamp(2.2rem,6vw,3.5rem);}
+  .inst-grid{grid-template-columns:1fr;gap:2rem;}
+  #about{grid-template-columns:1fr;gap:3rem;padding:5rem 1.5rem;}
+  .about-img-wrap .frame{height:300px;font-size:4rem;}
+  .contact-wrap{grid-template-columns:1fr;gap:2.5rem;}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2.5rem;}
+  .skills-grid,.projects-grid{grid-template-columns:1fr 1fr;}
+  .institution-section,.cta-attract,#skills,#projects,#contact,footer{padding-left:1.5rem;padding-right:1.5rem;}
+  .cta-attract{padding-top:3.5rem;padding-bottom:3.5rem;}
+  .hero-stats{justify-content:center;gap:2rem;}
+  .about-tag{right:0;bottom:-15px;}
+}
+@media(max-width:600px){
+  .skills-grid,.projects-grid{grid-template-columns:1fr;}
+  .hero-btns{flex-direction:column;align-items:stretch;}
+  .hero-btns a{text-align:center;justify-content:center;}
+  .hero-stats{gap:1.5rem;}
+  .stat strong{font-size:1.8rem;}
+  .footer-grid{grid-template-columns:1fr;gap:2rem;}
+  #contact{padding-left:1.2rem;padding-right:1.2rem;}
+  .modal-box{border-radius:14px;}
+  .modal-hero{height:160px;font-size:4rem;}
+  .modal-body{padding:1.5rem;}
+  .modal-body h2{font-size:1.5rem;}
+  .modal-footer{flex-direction:column;}
+  .modal-footer a,.modal-footer button{width:100%;text-align:center;justify-content:center;}
+  .inst-card{padding:2rem;}
+}
+@media(max-width:400px){
+  .hero-left{padding:4.5rem 1rem 2.5rem;}
+  .hero-stats{flex-direction:column;gap:1rem;align-items:center;}
+}
+</style>
+</head>
+<body>
+
+<button class="hamburger-btn" onclick="document.querySelector('.mobile-nav').classList.toggle('open')">
+  <i class="fas fa-bars"></i>
+</button>
+<nav class="mobile-nav">
+  <button class="close-btn" onclick="document.querySelector('.mobile-nav').classList.remove('open')"><i class="fas fa-times"></i></button>
+  <a href="#home" onclick="document.querySelector('.mobile-nav').classList.remove('open')">Home</a>
+  <a href="#about" onclick="document.querySelector('.mobile-nav').classList.remove('open')">About </a>
+  <a href="#skills" onclick="document.querySelector('.mobile-nav').classList.remove('open')">Skills</a>
+  <a href="#projects" onclick="document.querySelector('.mobile-nav').classList.remove('open')">Projects</a>
+  <a href="https://wa.me/250790170625" target="_blank">Contact</a>
+  <a href="#" class="mobile-cv-btn" onclick="downloadCV(event)"><i class="fas fa-download"></i> Download CV</a>
+</nav>
+
+<aside class="sidebar">
+  <div class="logo-area">
+    <img src="https://www.upskillshub.com/wp-content/uploads/2024/12/UP-SKILLS-HUB-1.jpg" alt="Up Skills Hub Logo"/>
+    <span class="brand">UP SKILLS HUB</span>
+  </div>
+  <nav>
+    <a href="#home" class="active"><i class="fas fa-home"></i> Home</a>
+    <a href="#about"><i class="fas fa-user"></i> About me</a>
+    <a href="#skills"><i class="fas fa-palette"></i> Skills</a>
+    <a href="#projects"><i class="fas fa-th-large"></i> Projects</a>
+    <a href="https://wa.me/250790170625" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
+  </nav>
+  <div class="sidebar-cv-btn">
+    <a href="#" onclick="downloadCV(event)"><i class="fas fa-file-download"></i> Download CV</a>
+  </div>
+  <div class="whatsapp-cta">
+    <a href="https://wa.me/250781543716" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+  </div>
+</aside>
+
+<div class="modal-overlay" id="projectModal" onclick="closeModal(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModalBtn()"><i class="fas fa-times"></i></button>
+    <div class="modal-hero" id="modalHero"></div>
+    <div class="modal-body">
+      <span class="modal-tag" id="modalTag"></span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDesc"></p>
+      <div class="modal-meta" id="modalMeta"></div>
+      <div class="modal-footer">
+        <a href="#contact" class="btn-primary" onclick="closeModalBtn()"><i class="fas fa-envelope"></i> Hire for This</a>
+        <a href="https://wa.me/250781543716" target="_blank" class="btn-outline"><i class="fab fa-whatsapp"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-wrap">
+
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span>✦ GRAPHIC DESIGN PORTFOLIO</span>
+      <span>✦ Trained by <a href="https://www.alicecop.com/" target="_blank">Alice Uwimana</a></span>
+      <span>✦ UP SKILLS HUB — Kigali, Rwanda</span>
+      <span>✦ Branding · Visual Identity · Social Media · Print</span>
+      <span>✦ GRAPHIC DESIGN PORTFOLIO</span>
+      <span>✦ Trained by <a href="https://www.alicecop.com/" target="_blank">Alice Uwimana</a></span>
+      <span>✦ UP SKILLS HUB — Kigali, Rwanda</span>
+      <span>✦ Branding · Visual Identity · Social Media · Print</span>
+    </div>
+  </div>
+
+  <section id="home">
+    <div class="hero-left fade-up">
+      <div class="hero-eyebrow">Graphic Design Graduate</div>
+      <h1>Bold Design. <em>Strategic Impact.</em> Moving Brands Forward</h1>
+      <p>I <b>specialize</b> in creating clean, impactful, and memorable designs tailored to modern brands and audiences. Every <b>design</b> I create is driven by <b>intention, emotion, and attention </b>to detail.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary"><i class="fas fa-th-large"></i> View Projects</a>
+        <a href="#" class="btn-cv" onclick="downloadCV(event)"><i class="fas fa-file-download"></i> Download CV</a>
+        <a href="https://www.alicecop.com/" target="_blank" class="btn-outline">Visit Alice Uwimana</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>Brand</strong><span>Identity</span></div>
+        <div class="stat"><strong>Social</strong><span>Media Design</span></div>
+        <div class="stat"><strong>Print</strong><span>&amp; Layout</span></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-visual">
+        <span class="big-letter">"Core Skills"</span>
+        <p>Logos Design . Typography Systems. Brand Guidelines · Iconography<br>Social Media design  · Content Template . Carousel Layout . Feed Graphics . Digital Banners <br> Print & Layout . Editorial Layouts . Marketing Collateral . Stationery System . Packaging</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="institution-section">
+    <div class="inst-grid">
+      <div class="inst-card fade-up">
+        <div class="badge">🎓 Training Institution</div>
+        <img src="https://www.upskillshub.com/wp-content/uploads/2024/12/UP-SKILLS-HUB-1.jpg" alt="Up Skills Hub Logo" class="inst-logo"/>
+        <h3>Up Skills Hub</h3>
+        <p>Up Skills Hub empowers youth with practical IT training, internships, and professional career guidance. Located in Remera, Kigali — bridging the gap between education and real-world opportunity in Rwanda's growing tech economy.</p>
+        <a href="https://www.upskillshub.com/" target="_blank" class="inst-link">Explore Up Skills Hub <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="inst-card fade-up">
+        <div class="badge">👩‍🎨 Lead Trainer</div>
+        <img src="https://www.alicecop.com/wp-content/uploads/2026/04/Alice-copy-Logo-9-1024x1024.png" alt="Alice Copy Logo" class="inst-logo"/>
+        <h3>Alice Uwimana</h3>
+        <p>Alice Uwimana is a digital skills trainer and creative professional who teaches practical, results-driven design. Her platform — Alice Copy — helps students learn real digital skills, build portfolios, and turn knowledge into income through hands-on projects.</p>
+        <a href="https://www.alicecop.com/" target="_blank" class="inst-link">Visit Alice Uwimana <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-attract">
+    <h2>Design Is How <em>I Make Sense of the World</em></h2>
+    <p>Design became more than just a skill for me; it became a way to express thoughts and emotions I can’t always put into words. I care deeply about creating work that feels honest — not just visually appealing, but meaningful and memorable. Even when I doubt myself or feel like I still have so much to learn, that same drive to grow is what keeps shaping me into a stronger creative every day.</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScMG7St3ye7JU7viFJFU1mZdXQcbZDuZ9F9wBiByiVek5SCdQ/viewform" target="_blank" class="register-btn">Don't wait for the right time, just Do it!</a>
+  </section>
+
+  <section id="about">
+    <div class="about-img-wrap fade-up">
+      <div class="frame">UWASE JAMIRAH
+        <img src="" alt="">
+        <div class="about-tag">🎨 Graphic Designer</div>
+      </div>
+    </div>
+    <div class="about-content fade-up">
+      <span class="eyebrow">WHO I AM</span>
+      <h2>I am Uwase Jamirah,</h2>
+      <p>I’ve always been the kind of person whose mind is constantly searching for <b>something new</b> — new ideas, new perspectives, new ways to create. Sometimes that curiosity makes me <b>restless</b> but it’s also one of my biggest strengths. It pushes me to <b>keep learning, improving, and stepping outside of what feels familiar</b>. I pay attention to the small details most people <b>overlook </b>, because to me, those details are what make something <b>feel real, intentional, and alive.</b></p>
+      <p>Design became more than just a skill for me; it became a way to express <b>thoughts and emotions</b> I can’t always put into words. I care deeply about creating work that feels honest — not just visually appealing, but <b>meaningful and memorable.</b> Even when I doubt myself or feel like I still have so much to learn, that same drive to grow is what keeps shaping me into a stronger creative every day.</p>
+      <div class="skills-list">
+        <span class="skill-chip">Logo Design</span>
+        <span class="skill-chip">Brand Identity</span>
+        <span class="skill-chip">Social Media</span>
+        <span class="skill-chip">Adobe Illustrator</span>
+        <span class="skill-chip">Photoshop</span>
+        <span class="skill-chip">Canva Pro</span>
+        <span class="skill-chip">Color Theory</span>
+        <span class="skill-chip">Typography</span>
+        <span class="skill-chip">Print Design</span>
+      </div>
+      <div class="about-cv-row">
+        <a href="#" class="btn-cv" onclick="downloadCV(event)" style="display:inline-flex;"><i class="fas fa-file-download"></i> Download My CV</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head fade-up">
+      <span class="eyebrow">Core Competencies</span>
+      <h2>Design Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card fade-up">
+        <span class="icon">🎯</span>
+        <h4>Brand Identity Design</h4>
+        <p>Logo systems, brand guidelines, color palettes, and visual identity packages that communicate brand values consistently.</p>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:90%"></div></div>
+      </div>
+      <div class="skill-card fade-up">
+        <span class="icon">📱</span>
+        <h4>Social Media Creatives</h4>
+        <p>Eye-catching post series, campaign visuals, story sets, ad creatives, and launch graphics built for engagement.</p>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:88%"></div></div>
+      </div>
+      <div class="skill-card fade-up">
+        <span class="icon">🖨️</span>
+        <h4>Print &amp; Layout Design</h4>
+        <p>Professional flyers, posters, brochures, menus, and branded documents optimized for print and digital use.</p>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:85%"></div></div>
+      </div>
+      <div class="skill-card fade-up">
+        <span class="icon">✍️</span>
+        <h4>Typography &amp; Composition</h4>
+        <p>Strategic type pairings, grid-based layouts, and visual hierarchy that guide the reader's eye and communicate clearly.</p>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:82%"></div></div>
+      </div>
+      <div class="skill-card fade-up">
+        <span class="icon">🎨</span>
+        <h4>Color Theory &amp; Mood</h4>
+        <p>Intentional color psychology applied to brand systems, campaigns, and marketing materials that evoke the right emotions.</p>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:87%"></div></div>
+      </div>
+      <div class="skill-card fade-up">
+        <span class="icon">📸</span>
+        <h4>Photo Editing &amp; Mockups</h4>
+        <p>Professional photo retouching, compositing, and realistic mockup presentations that showcase design work beautifully.</p>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:80%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head fade-up">
+      <span class="eyebrow">My Work</span>
+      <h2>Recent Creations</h2>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card fade-up" onclick="openModal(0)">
+        <div class="img-placeholder">LOGO
+          <div class="img-overlay"><button class="view-btn"><i class="fas fa-eye"></i> View Project</button></div>
+        </div>
+        <div class="project-info">
+          <span class="tag">Brand Identity System</span>
+          <h4>Modern Logo System</h4>
+          <p>Logo mark, wordmark, and full brand guidelines for a premium Kigali business.</p>
+          <div class="project-info-footer">
+            <button class="open-link-btn" onclick="event.stopPropagation();openModal(0)"><i class="fas fa-expand-alt"></i> Open Project</button>
+            <a href="https://www.figma.com/design/liRIExYwxOg7hmv3RsrSey/Untitled?node-id=1-2&t=SDzk2Rpu5ktcOosP-0">view project</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" onclick="openModal(1)">
+        <div class="img-placeholder">SM
+          <div class="img-overlay"><button class="view-btn"><i class="fas fa-eye"></i> View Project</button></div>
+        </div>
+        <div class="project-info">
+          <span class="tag">Social Media</span>
+          <h4>Instagram Campaign Kit</h4>
+          <p>10-post series with consistent visual language for a product launch campaign.</p>
+          <div class="project-info-footer">
+            <button class="open-link-btn" onclick="event.stopPropagation();openModal(1)"><i class="fas fa-expand-alt"></i> Open Project</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" onclick="openModal(2)">
+        <div class="img-placeholder">PTR
+          <div class="img-overlay"><button class="view-btn"><i class="fas fa-eye"></i> View Project</button></div>
+        </div>
+        <div class="project-info">
+          <span class="tag">Poster Design</span>
+          <h4>Event Poster Series</h4>
+          <p>Bold typographic posters for a youth conference with high visual impact.</p>
+          <div class="project-info-footer">
+            <button class="open-link-btn" onclick="event.stopPropagation();openModal(2)"><i class="fas fa-expand-alt"></i> Open Project</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" onclick="openModal(3)">
+        <div class="img-placeholder">BRD
+          <div class="img-overlay"><button class="view-btn"><i class="fas fa-eye"></i> View Project</button></div>
+        </div>
+        <div class="project-info">
+          <span class="tag">Branding</span>
+          <h4>Complete Brand Package</h4>
+          <p>Full identity system including stationery, digital assets, and brand manual.</p>
+          <div class="project-info-footer">
+            <button class="open-link-btn" onclick="event.stopPropagation();openModal(3)"><i class="fas fa-expand-alt"></i> Open Project</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" onclick="openModal(4)">
+        <div class="img-placeholder">FLY
+          <div class="img-overlay"><button class="view-btn"><i class="fas fa-eye"></i> View Project</button></div>
+        </div>
+        <div class="project-info">
+          <span class="tag">Print</span>
+          <h4>Marketing Flyer Collection</h4>
+          <p>Multi-format flyer set for events, promotions, and awareness campaigns.</p>
+          <div class="project-info-footer">
+            <button class="open-link-btn" onclick="event.stopPropagation();openModal(4)"><i class="fas fa-expand-alt"></i> Open Project</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" onclick="openModal(5)">
+        <div class="img-placeholder">AD
+          <div class="img-overlay"><button class="view-btn"><i class="fas fa-eye"></i> View Project</button></div>
+        </div>
+        <div class="project-info">
+          <span class="tag">Ad Creative</span>
+          <h4>Digital Ad Set</h4>
+          <p>Facebook and Instagram ad creatives designed for conversion and brand recall.</p>
+          <div class="project-info-footer">
+            <button class="open-link-btn" onclick="event.stopPropagation();openModal(5)"><i class="fas fa-expand-alt"></i> Open Project</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-wrap">
+      <div class="contact-info fade-up">
+        <span class="eyebrow">Get In Touch</span>
+        <h2>Let's Work Together</h2>
+        <p>Looking for a graphic designer for your next project? Or interested in joining the Up Skills Hub Graphic Design program? Reach out — we'd love to connect.</p>
+        <div class="contact-chips">
+          <a href="https://wa.me/250790170625" target="_blank" class="contact-chip"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+          <a href="https://www.upskillshub.com/" target="_blank" class="contact-chip"><i class="fas fa-globe"></i> Up Skills Hub Website</a>
+          <a href="https://www.alicecop.com/" target="_blank" class="contact-chip"><i class="fas fa-star"></i> Alice Uwimana — Trainer</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLScMG7St3ye7JU7viFJFU1mZdXQcbZDuZ9F9wBiByiVek5SCdQ/viewform" target="_blank" class="contact-chip"><i class="fas fa-graduation-cap"></i> Enroll in the Course</a>
+          <a href="#" onclick="downloadCV(event)" class="contact-chip"><i class="fas fa-file-download"></i> Download CV</a>
+        </div>
+      </div>
+      <div class="contact-form fade-up">
+        <input type="text" placeholder="Your Full Name"/>
+        <input type="email" placeholder="Email Address"/>
+        <input type="text" placeholder="Project Type (e.g. Logo Design, Branding)"/>
+        <textarea placeholder="Tell me about your project or inquiry..."></textarea>
+        <button onclick="window.open('https://wa.me/250790170625','_blank')">Send Message via WhatsApp</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">GRAPHIC DESIGN</div>
+        <p>A student portfolio from Up Skills Hub — Rwanda's leading practical IT training center. Trained with passion, designed with purpose.</p>
+        <div class="learner">
+          <span>Portfolio Owner</span>
+          <strong>Up Skills Hub Student</strong>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h5>Navigate</h5>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="https://wa.me/250790170625" target="_blank">Contact</a>
+        <a href="#" onclick="downloadCV(event)">Download CV</a>
+      </div>
+      <div class="footer-links">
+        <h5>Programs</h5>
+        <a href="https://www.upskillshub.com/" target="_blank">Up Skills Hub</a>
+        <a href="https://www.alicecop.com/" target="_blank">Alice Uwimana</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScMG7St3ye7JU7viFJFU1mZdXQcbZDuZ9F9wBiByiVek5SCdQ/viewform" target="_blank">Enroll Now</a>
+      </div>
+    </div>
+
+    <div class="partners-row">
+      <h5>Partners &amp; Affiliates</h5>
+      <div class="partners-list">
+        <span class="partner-badge">Up Skills Hub</span>
+        <span class="partner-badge">Alice Copy</span>
+        <span class="partner-badge">Adobe Creative Suite</span>
+        <span class="partner-badge">Canva Pro</span>
+        <span class="partner-badge">Kigali Tech Community</span>
+      </div>
+    </div>
+
+    <div class="footer-map">
+      <h5>📍 Find Us — Up Skills Hub, Remera, Kigali</h5>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.4580199!2d30.1107958!3d-1.9603384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca795b99988fb%3A0x4fd8ce87010498cb!2sUp%20Skills%20Hub!5e0!3m2!1sen!2srw!4v1700000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Up Skills Hub Location"></iframe>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Up Skills Hub Graphic Design Portfolio. Trained by <a href="https://www.alicecop.com/" target="_blank" style="color:var(--gold);text-decoration:none;">Alice Uwimana</a>.</p>
+      <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;">
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-behance"></i></a>
+          <a href="https://wa.me/250790170625" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <a href="#" onclick="downloadCV(event)" class="register-now-btn" style="background:rgba(201,168,76,.2);color:var(--gold);border:1px solid rgba(201,168,76,.4);"><i class="fas fa-file-download" style="margin-right:.4rem;"></i> Download CV</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScMG7St3ye7JU7viFJFU1mZdXQcbZDuZ9F9wBiByiVek5SCdQ/viewform" target="_blank" class="register-now-btn">Enroll in This Course</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+const projects = [
+  {
+    label:'LOGO',
+    gradient:'linear-gradient(135deg,#1a1a2e,#16213e)',
+    color:'#c9a84c',
+    tag:'Brand Identity',
+    title:'Modern Logo System',
+    desc:'A comprehensive logo design project created for a premium Kigali-based business. The process included discovery workshops, competitor analysis, moodboard creation, and iterative sketching before moving into digital execution in Adobe Illustrator. The final deliverable included a primary logo mark, a horizontal wordmark, a stacked version, favicon, and a 20-page brand guidelines document covering typography, color system, safe zones, and misuse examples.',
+    tools:['Adobe Illustrator','Brand Strategy','Color Theory','Typography']
+  },
+  {
+    label:'SM',
+    gradient:'linear-gradient(135deg,#2d1b0e,#5c3317)',
+    color:'#e8d5a3',
+    tag:'Social Media',
+    title:'Instagram Campaign Kit',
+    desc:'A 10-post social media series designed for a product launch campaign targeting young urban professionals in Rwanda. Each post was designed with a unified visual language — consistent grid pattern, recurring type treatments, and a bold color scheme — ensuring the feed looked cohesive at a glance. Assets were exported in multiple sizes for Instagram Feed, Stories, and Reels thumbnails. Designed in Canva Pro with custom graphic elements from Illustrator.',
+    tools:['Canva Pro','Adobe Illustrator','Visual Strategy','Content Planning']
+  },
+  {
+    label:'PTR',
+    gradient:'linear-gradient(135deg,#0d2137,#1a4568)',
+    color:'#7ecfff',
+    tag:'Poster Design',
+    title:'Event Poster Series',
+    desc:'A series of three large-format event posters for a Kigali youth conference. The design challenge was to communicate energy and urgency while maintaining legibility at both A1 print size and social media scale. Bold typographic choices from the Bebas Neue and Playfair Display families were paired with high-contrast photography overlays and geometric accent elements. Each poster variant conveyed a different thematic track of the conference: Innovation, Leadership, and Creativity.',
+    tools:['Adobe Photoshop','Adobe Illustrator','Print Layout','Typography']
+  },
+  {
+    label:'BRD',
+    gradient:'linear-gradient(135deg,#1a0d2e,#3d1f5c)',
+    color:'#d4a5ff',
+    tag:'Branding',
+    title:'Complete Brand Package',
+    desc:'A full-suite brand identity project delivered for a growing Rwandan startup. The package included logo design, color system, typography hierarchy, business card design, letterhead, email signature, branded social media templates, a pitch deck template, and an 8-page brand manual. The project was executed across a 4-week sprint, incorporating two rounds of feedback and final print-ready file delivery in PDF, AI, and PNG formats.',
+    tools:['Adobe Illustrator','Adobe InDesign','Brand Manual','Print Design']
+  },
+  {
+    label:'FLY',
+    gradient:'linear-gradient(135deg,#0d1a0a,#1e3d17)',
+    color:'#8fff8f',
+    tag:'Print Design',
+    title:'Marketing Flyer Collection',
+    desc:'A versatile collection of marketing flyers produced for events, promotional offers, and awareness campaigns across various clients. Each flyer was designed in A4 and A5 formats, with digital-ready exports for WhatsApp sharing and print-ready high-resolution versions. The collection demonstrates adaptability across industries — from food & beverage promotions to tech event announcements — while maintaining consistent production quality and strong visual hierarchy.',
+    tools:['Canva Pro','Adobe Illustrator','Print Layout','Color Theory']
+  },
+  {
+    label:'AD',
+    gradient:'linear-gradient(135deg,#2a0d0d,#5c1717)',
+    color:'#ffaaaa',
+    tag:'Ad Creative',
+    title:'Digital Ad Set',
+    desc:'A set of performance-focused ad creatives designed for Facebook and Instagram placements. The campaign featured three creative concepts tested for A/B performance: a product-led visual, a testimonial-style graphic, and an offer-focused design. All ads were optimized for the 1080×1080 feed format and 1080×1920 Stories format. Design decisions were informed by conversion principles — strong CTAs, benefit-led headlines, and minimal visual clutter to maximize click-through rates.',
+    tools:['Adobe Photoshop','Meta Ad Specs','Conversion Design','Canva Pro']
+  }
+];
+
+function openModal(index){
+  const p = projects[index];
+  const modal = document.getElementById('projectModal');
+  document.getElementById('modalHero').style.background = p.gradient;
+  document.getElementById('modalHero').style.color = p.color;
+  document.getElementById('modalHero').textContent = p.label;
+  document.getElementById('modalTag').textContent = p.tag;
+  document.getElementById('modalTitle').textContent = p.title;
+  document.getElementById('modalDesc').textContent = p.desc;
+  const meta = document.getElementById('modalMeta');
+  meta.innerHTML = p.tools.map(t=>`<span class="modal-chip">${t}</span>`).join('');
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModalBtn(){
+  document.getElementById('projectModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function closeModal(e){
+  if(e.target === document.getElementById('projectModal')) closeModalBtn();
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModalBtn();});
+
+function downloadCV(e){
+  e.preventDefault();
+  // Replace with: window.open('your-cv.pdf','_blank'); when you have a real PDF
+  const cvContent = `UP SKILLS HUB — GRAPHIC DESIGN PORTFOLIO
+Graphic Designer | Kigali, Rwanda
+Trained by Alice Uwimana at Up Skills Hub
+
+CONTACT
+WhatsApp: +250 790 170 625
+Website: https://www.upskillshub.com/
+
+SKILLS
+- Logo & Brand Identity Design (90%)
+- Social Media Creatives (88%)
+- Print & Layout Design (85%)
+- Typography & Composition (82%)
+- Color Theory & Mood (87%)
+- Photo Editing & Mockups (80%)
+
+TOOLS
+Adobe Illustrator | Adobe Photoshop | Adobe InDesign | Canva Pro
+
+EDUCATION
+Graphic Design Program
+Up Skills Hub — Remera, Kigali, Rwanda
+Mentor: Alice Uwimana (alicecop.com)
+
+PROJECTS
+1. Modern Logo System — Brand Identity
+2. Instagram Campaign Kit — Social Media
+3. Event Poster Series — Print Design
+4. Complete Brand Package — Branding
+5. Marketing Flyer Collection — Print
+6. Digital Ad Set — Ad Creative
+
+---
+To view the full portfolio, visit this page.
+To hire or collaborate: https://wa.me/250790170625
+`;
+  const blob = new Blob([cvContent],{type:'text/plain'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Graphic-Designer-CV-UpSkillsHub.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+},{threshold:0.12});
+document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.sidebar nav a');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(s=>{
+    if(window.scrollY>=s.offsetTop-200) current=s.id;
+  });
+  navLinks.forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+current);
+  });
+});
+</script>
+</body>
+</html>
